@@ -1,0 +1,294 @@
+================================================================================
+CREDIT SYSTEM - HOW TO USE ON ANOTHER PC
+================================================================================
+
+UPDATED VERSION: All bugs fixed!
+- Balance credit now automatically reduces new debt
+- PDF documentation works perfectly in all 4 languages
+- No more emoji errors
+
+================================================================================
+OPTION 1: WINDOWS DESKTOP APP (RECOMMENDED FOR PC)
+================================================================================
+
+STEP 1: GET THE APP
+-------------------
+Location: dist\CreditSystem_Windows_Portable.zip
+Size: ~16 MB (compressed)
+
+STEP 2: TRANSFER TO ANOTHER PC
+-------------------------------
+Method A: USB Flash Drive
+  1. Copy CreditSystem_Windows_Portable.zip to USB drive
+  2. Plug USB into the other PC
+  3. Copy the ZIP file to Desktop or any folder
+
+Method B: Cloud Storage (Google Drive, OneDrive, Dropbox)
+  1. Upload CreditSystem_Windows_Portable.zip to cloud
+  2. Download on the other PC
+
+Method C: Email
+  1. Attach CreditSystem_Windows_Portable.zip to email
+  2. Send to yourself
+  3. Download on the other PC
+
+Method D: Network Share
+  1. Share the folder on your network
+  2. Access from the other PC
+
+STEP 3: INSTALL ON THE OTHER PC
+--------------------------------
+1. Extract CreditSystem_Windows_Portable.zip
+   - Right-click > Extract All
+   - Choose a location (Desktop, Documents, etc.)
+
+2. Open the extracted folder: CreditSystem_Windows_Portable
+
+3. Double-click: credit_app.exe
+
+4. If Windows shows "Windows protected your PC":
+   - Click "More info"
+   - Click "Run anyway"
+
+5. First time setup:
+   - Create your first user account
+   - Set a 4-digit PIN code
+   - Start using the app!
+
+STEP 4: TRANSFER YOUR DATA (OPTIONAL)
+--------------------------------------
+If you want to move your existing data to the new PC:
+
+Method A: Using Backup Feature (EASIEST)
+  1. On OLD PC:
+     - Open Credit System
+     - Go to Settings > Backup & Restore
+     - Click "Create Backup"
+     - Save the file (credit_app_backup_YYYYMMDD.json)
+     - Copy this file to USB or cloud
+
+  2. On NEW PC:
+     - Open Credit System
+     - Create a new user account first
+     - Go to Settings > Backup & Restore
+     - Click "Restore Backup"
+     - Select your backup file
+     - Done! All data restored
+
+Method B: Manual Database Copy (ADVANCED)
+  1. On OLD PC:
+     - Press Win+R
+     - Type: %APPDATA%\credit_app
+     - Copy: credit_app.db
+
+  2. On NEW PC:
+     - Run credit_app.exe once (creates folders)
+     - Close the app
+     - Press Win+R
+     - Type: %APPDATA%\credit_app
+     - Paste: credit_app.db (replace existing)
+     - Run credit_app.exe again
+
+================================================================================
+OPTION 2: ANDROID MOBILE APP
+================================================================================
+
+STEP 1: GET THE APK
+-------------------
+Location: build\app\outputs\flutter-apk\app-release.apk
+Size: ~64 MB
+
+STEP 2: TRANSFER TO PHONE
+--------------------------
+Method A: USB Cable
+  1. Connect phone to PC with USB cable
+  2. Copy app-release.apk to phone's Download folder
+  3. On phone: Open "Files" or "My Files" app
+  4. Find app-release.apk in Downloads
+  5. Tap to install
+
+Method B: Cloud Storage
+  1. Upload app-release.apk to Google Drive/Dropbox
+  2. Download on phone
+  3. Tap to install
+
+Method C: Bluetooth/WiFi Direct
+  1. Send app-release.apk via Bluetooth
+  2. Accept on phone
+  3. Tap to install
+
+STEP 3: INSTALL ON PHONE
+-------------------------
+1. Enable "Install from Unknown Sources":
+   - Settings > Security > Unknown Sources (ON)
+   - Or: Settings > Apps > Special Access > Install Unknown Apps
+
+2. Tap the APK file to install
+
+3. If Google Play Protect warning appears:
+   - Tap "Install anyway"
+
+4. First time setup:
+   - Create your first user account
+   - Set a 4-digit PIN code
+   - Start using the app!
+
+STEP 4: TRANSFER DATA TO PHONE (OPTIONAL)
+------------------------------------------
+Method A: Using Backup Feature
+  1. On PC/Old Phone:
+     - Create backup (Settings > Backup & Restore)
+     - Save backup file
+
+  2. Transfer backup file to new phone:
+     - Via USB, cloud, or email
+
+  3. On New Phone:
+     - Open Credit System
+     - Create user account
+     - Settings > Backup & Restore > Restore Backup
+     - Select backup file
+
+Method B: Share Database File
+  1. On PC: Copy database from %APPDATA%\credit_app\credit_app.db
+  2. Transfer to phone
+  3. On Phone: Use file manager to copy to:
+     /data/data/com.example.credit_app/databases/credit_app.db
+     (Requires root access - NOT RECOMMENDED)
+
+================================================================================
+SYSTEM REQUIREMENTS
+================================================================================
+
+WINDOWS DESKTOP:
+- Windows 10 or Windows 11 (64-bit)
+- 100 MB free disk space
+- No additional software needed
+- All DLL files included
+
+ANDROID MOBILE:
+- Android 5.0 (Lollipop) or higher
+- 100 MB free storage
+- No Google Play Services required
+
+================================================================================
+FEATURES INCLUDED
+================================================================================
+
+✓ Multi-user support with PIN authentication
+✓ Customer management (add, edit, delete)
+✓ Credit/Debt tracking with 70+ grocery items in 12 categories
+✓ Payment recording with overpayment protection
+✓ Automatic balance credit consumption (NEW FIX!)
+✓ Transaction history with edit/delete
+✓ PDF export (customer statements) - Fixed for all languages!
+✓ CSV export (transaction data)
+✓ Backup & Restore
+✓ Multi-language: English, Arabic, French, Tunisian
+✓ RTL support for Arabic languages
+✓ In-app user documentation with diagrams
+
+================================================================================
+TROUBLESHOOTING
+================================================================================
+
+WINDOWS ISSUES:
+
+Q: App doesn't start?
+A: 1. Make sure all files are extracted together
+   2. Right-click credit_app.exe > Properties > Unblock
+   3. Run as Administrator
+   4. Check Windows Defender didn't block it
+
+Q: "VCRUNTIME140.dll missing" error?
+A: Download Visual C++ Redistributable from Microsoft
+
+Q: Forgot PIN code?
+A: Delete database: %APPDATA%\credit_app\credit_app.db
+   (WARNING: This deletes all data! Use backup first)
+
+ANDROID ISSUES:
+
+Q: Can't install APK?
+A: Enable "Install from Unknown Sources" in Settings
+
+Q: App crashes on startup?
+A: 1. Clear app data: Settings > Apps > Credit System > Clear Data
+   2. Reinstall the app
+   3. Make sure Android version is 5.0+
+
+Q: Forgot PIN code?
+A: Uninstall and reinstall app (data will be lost unless backed up)
+
+================================================================================
+DATA LOCATIONS
+================================================================================
+
+WINDOWS:
+C:\Users\[YourUsername]\AppData\Roaming\credit_app\
+  ├── credit_app.db          (Main database)
+  ├── logs\                  (Application logs)
+  └── backups\               (Automatic backups)
+
+ANDROID:
+/data/data/com.example.credit_app/databases/
+  └── credit_app.db          (Main database)
+
+================================================================================
+BACKUP RECOMMENDATIONS
+================================================================================
+
+1. Create backups regularly (weekly recommended)
+2. Store backups in multiple locations:
+   - USB drive
+   - Cloud storage (Google Drive, Dropbox)
+   - Email to yourself
+3. Test restore occasionally to ensure backups work
+4. Before major updates, always create a backup
+
+================================================================================
+SHARING THE APP WITH OTHERS
+================================================================================
+
+WINDOWS:
+- Share: dist\CreditSystem_Windows_Portable.zip (16 MB)
+- They extract and run credit_app.exe
+- Each user creates their own account
+
+ANDROID:
+- Share: build\app\outputs\flutter-apk\app-release.apk (64 MB)
+- They install on their phone
+- Each user creates their own account
+
+NOTE: Each installation is independent. Data is NOT shared between devices
+unless you manually transfer backup files.
+
+================================================================================
+UPDATES & VERSION INFO
+================================================================================
+
+Current Version: 1.0.0 (Fixed)
+Build Date: 2024
+
+What's Fixed in This Build:
+1. Balance credit consumption bug - Now works correctly!
+   Example: 10 TND balance + 15 TND debt = 5 TND debt (not 15 TND)
+
+2. PDF documentation errors - No more emoji or border errors!
+   All 4 languages work perfectly: English, Arabic, French, Tunisian
+
+3. All features tested and working on:
+   - Windows 10/11 Desktop
+   - Android 5.0+ Mobile
+   - Web browsers (Chrome, Edge, Firefox)
+
+================================================================================
+SUPPORT
+================================================================================
+
+For questions or issues:
+1. Check the README.txt in the app folder
+2. Check in-app documentation (Settings > User Documentation)
+3. Review troubleshooting section above
+
+================================================================================

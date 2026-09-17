@@ -1,0 +1,40 @@
+# Auto detect text files and normalize line endings to LF
+* text=auto
+
+# Dart/Flutter files
+*.dart text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf
+
+# Markdown files
+*.md text eol=lf
+
+# JSON files
+*.json text eol=lf
+
+# Shell scripts
+*.sh text eol=lf
+*.bash text eol=lf
+*.ps1 text eol=crlf
+
+# Binary files
+*.apk binary
+*.ipa binary
+*.app binary
+*.exe binary
+*.dll binary
+*.so binary
+*.dylib binary
+
+# Images
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.svg text
+
+# Archives
+*.zip binary
+*.tar binary
+*.gz binary

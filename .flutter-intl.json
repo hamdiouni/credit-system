@@ -1,0 +1,14 @@
+{
+  "arb_dir": "lib/l10n",
+  "output_dir": "lib/generated",
+  "output_localization_file": "app_localizations.dart",
+  "nullable_prefix": "",
+  "output_class": "AppLocalizations",
+  "replace_escape_chars": false,
+  "relaxed_syntax": false,
+  "use_deferred_loading": false,
+  "i18n_enabled": true,
+  "locales": ["en", "ar", "fr"],
+  "ios_config_file_format": "json",
+  "macos_config_file_format": "json"
+}

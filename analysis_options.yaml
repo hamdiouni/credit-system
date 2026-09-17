@@ -1,0 +1,13 @@
+linter:
+  rules:
+    - camel_case_types
+    - camel_case_extensions
+    - library_names
+    - library_prefixes
+    - type_init_formals
+
+analyzer:
+  exclude: [build/**]
+  errors:
+    missing_required_param: error
+    missing_return: error
