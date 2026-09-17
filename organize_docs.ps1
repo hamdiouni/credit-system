@@ -1,193 +1,239 @@
-# Documentation Organization Script
-Write-Host "========================================" -ForegroundColor Cyan
-Write-Host "Organizing Credit System Documentation" -ForegroundColor Cyan
-Write-Host "========================================" -ForegroundColor Cyan
+# ============================================
+# Professional Documentation Reorganization
+# ============================================
+
+Write-Host "================================================" -ForegroundColor Cyan
+Write-Host "  Organizing Documentation Structure" -ForegroundColor Cyan
+Write-Host "================================================" -ForegroundColor Cyan
 Write-Host ""
 
-# Create folders if they don't exist
-$folders = @(
-    "docs/user-guides",
-    "docs/development/changelog",
-    "docs/development/architecture",
-    "docs/development/phases",
-    "docs/deployment",
-    "docs/maintenance",
-    "docs/troubleshooting"
+$moved = 0
+$kept = 0
+
+# Files to KEEP in root (essential project files)
+$keepInRoot = @(
+    "README.md",
+    "CHANGELOG.md",
+    "CONTRIBUTING.md",
+    "LICENSE",
+    ".gitignore",
+    ".gitattributes"
 )
 
-foreach ($folder in $folders) {
-    if (-not (Test-Path $folder)) {
-        New-Item -ItemType Directory -Path $folder -Force | Out-Null
-        Write-Host "[CREATE] $folder" -ForegroundColor Green
-    }
-}
-
-# Move user guides
-Write-Host "`n[USER GUIDES]" -ForegroundColor Yellow
-$userGuides = @(
-    @{src="USER_GUIDE_ENGLISH.md"; dst="docs/user-guides/"},
-    @{src="USER_GUIDE_ARABIC.md"; dst="docs/user-guides/"},
-    @{src="QUICK_START_GUIDE.md"; dst="docs/user-guides/"},
-    @{src="INSTALL_ON_PHONE.md"; dst="docs/user-guides/"},
-    @{src="RUN_ON_MOBILE.md"; dst="docs/user-guides/"}
+# Move development/progress files
+$devFiles = @(
+    "PHASE9_STARTED.md",
+    "PHASE9_PROGRESS_80PERCENT.md",
+    "PHASE11_PROGRESS.md",
+    "PHASE11_INTEGRATION_COMPLETE.md",
+    "PHASE13_STARTED.md",
+    "PHASE13_PROGRESS_UPDATE.md",
+    "PHASE13_QUICK_REFERENCE.md",
+    "CURRENT_PROGRESS_CHECKPOINT.md",
+    "ENTERPRISE_UPGRADES_STARTED.md",
+    "ENTERPRISE_UPGRADES_STATUS.md",
+    "ENTERPRISE_UPGRADES_FINAL_PLAN.md",
+    "REMAINING_PHASES_ROADMAP.md"
 )
 
-foreach ($file in $userGuides) {
-    if (Test-Path $file.src) {
-        Move-Item -Path $file.src -Destination $file.dst -Force
-        Write-Host "  Moved: $($file.src)" -ForegroundColor Gray
+Write-Host "[1/7] Moving development progress files..." -ForegroundColor Yellow
+foreach ($file in $devFiles) {
+    if (Test-Path $file) {
+        Move-Item $file "docs/development/phases/" -Force
+        Write-Host "  OK $file -> docs/development/phases/" -ForegroundColor Green
+        $moved++
     }
 }
 
-# Move deployment docs
-Write-Host "`n[DEPLOYMENT]" -ForegroundColor Yellow
-$deployment = @(
-    @{src="HOW_TO_USE_ON_ANOTHER_PC.txt"; dst="docs/deployment/"},
-    @{src="BUILD_GUIDE.md"; dst="docs/deployment/"},
-    @{src="QUICK_BUILD_GUIDE.md"; dst="docs/deployment/"},
-    @{src="BUILD_ANDROID_AND_DESKTOP.md"; dst="docs/deployment/"},
-    @{src="DEPLOYMENT_CHECKLIST.md"; dst="docs/deployment/"},
-    @{src="BUILDS_READY.txt"; dst="docs/deployment/"},
-    @{src="APK_READY.md"; dst="docs/deployment/"},
-    @{src="YOUR_APK_IS_READY.md"; dst="docs/deployment/"},
-    @{src="BUILD_RESULTS.md"; dst="docs/deployment/"}
+# Move changelog/status files
+$changelogFiles = @(
+    "UX_IMPROVEMENTS_COMPLETE.txt",
+    "FINAL_FIX_COMPLETE.txt",
+    "FINAL_UPDATES_COMPLETE.md",
+    "AUTO_BALANCE_AND_LANGUAGE_FIX.md",
+    "BALANCE_CREDIT_UI_UPDATE.md",
+    "BALANCE_FIX_COMPLETE.md",
+    "BOTH_BUILDS_COMPLETE.md",
+    "CSV_AND_PDF_FIXES.md",
+    "DELETE_CUSTOMER_UPDATE.md",
+    "FINAL_UPDATE_SUMMARY.md",
+    "LETTER_JOINING_FIX.md",
+    "NAVIGATION_FIX_APPLIED.md",
+    "OVERPAYMENT_FIX.md",
+    "REFACTORING_COMPLETE.md",
+    "TRANSACTION_FIX_APPLIED.md",
+    "TRANSLATION_AND_GUIDES_COMPLETE.md",
+    "TRANSLATION_FIXES.md",
+    "UPDATE_ICON_GUIDE.md",
+    "UPDATES_COMPLETE.md",
+    "UPGRADES_COMPLETE.md",
+    "WEB_TRANSACTION_FIX.md"
 )
 
-foreach ($file in $deployment) {
-    if (Test-Path $file.src) {
-        Move-Item -Path $file.src -Destination $file.dst -Force
-        Write-Host "  Moved: $($file.src)" -ForegroundColor Gray
+Write-Host "[2/7] Moving changelog files..." -ForegroundColor Yellow
+foreach ($file in $changelogFiles) {
+    if (Test-Path $file) {
+        Move-Item $file "docs/development/changelog/" -Force
+        Write-Host "  OK $file -> docs/development/changelog/" -ForegroundColor Green
+        $moved++
     }
 }
 
-# Move changelog/releases
-Write-Host "`n[CHANGELOG]" -ForegroundColor Yellow
-$changelog = @(
-    @{src="UX_IMPROVEMENTS_COMPLETE.txt"; dst="docs/development/changelog/"},
-    @{src="FINAL_FIX_COMPLETE.txt"; dst="docs/development/changelog/"},
-    @{src="FINAL_UPDATES_COMPLETE.md"; dst="docs/development/changelog/"},
-    @{src="ALL_ISSUES_FIXED.md"; dst="docs/development/changelog/"},
-    @{src="WEB_COMPATIBILITY_FIX.md"; dst="docs/development/changelog/"},
-    @{src="ARABIC_PDF_ERRORS_FIXED.md"; dst="docs/development/changelog/"},
-    @{src="CRITICAL_TRANSACTION_BUG_FIXED.md"; dst="docs/development/changelog/"},
-    @{src="ALL_FIXES_COMPLETE.md"; dst="docs/development/changelog/"}
+# Move architecture/design files
+$archFiles = @(
+    "ARCHITECTURE.md",
+    "BUSINESS_RULES.md",
+    "DATA_FLOW_VISUAL.md",
+    "DATABASE_INTEGRATION.md",
+    "DATABASE_SETUP.md",
+    "DATABASE_SUMMARY.md"
 )
 
-foreach ($file in $changelog) {
-    if (Test-Path $file.src) {
-        Move-Item -Path $file.src -Destination $file.dst -Force
-        Write-Host "  Moved: $($file.src)" -ForegroundColor Gray
+Write-Host "[3/7] Moving architecture files..." -ForegroundColor Yellow
+foreach ($file in $archFiles) {
+    if (Test-Path $file) {
+        Move-Item $file "docs/development/architecture/" -Force
+        Write-Host "  OK $file -> docs/development/architecture/" -ForegroundColor Green
+        $moved++
     }
 }
 
-# Move development phases
-Write-Host "`n[DEVELOPMENT PHASES]" -ForegroundColor Yellow
-$phases = @(
-    @{src="PHASE9_COMPLETE.md"; dst="docs/development/phases/"},
-    @{src="PHASE10_COMPLETE.md"; dst="docs/development/phases/"},
-    @{src="PHASE11_COMPLETE.md"; dst="docs/development/phases/"},
-    @{src="PHASE12_COMPLETE.md"; dst="docs/development/phases/"},
-    @{src="PHASE13_COMPLETE.md"; dst="docs/development/phases/"},
-    @{src="PHASE14_COMPLETE.md"; dst="docs/development/phases/"},
-    @{src="PHASE11_QUICK_START.md"; dst="docs/development/phases/"},
-    @{src="ENTERPRISE_UPGRADES_COMPLETE.md"; dst="docs/development/phases/"},
-    @{src="UPGRADES_PHASE*.md"; dst="docs/development/phases/"}
+# Move deployment/build files
+$deployFiles = @(
+    "ANSWER_ANDROID_DESKTOP.md",
+    "WINDOWS_APP_READY.md",
+    "build_log.txt"
 )
 
-foreach ($file in $phases) {
-    if ($file.src -like "*`**") {
-        # Handle wildcards
-        Get-ChildItem -Path $file.src -ErrorAction SilentlyContinue | ForEach-Object {
-            Move-Item -Path $_.FullName -Destination $file.dst -Force
-            Write-Host "  Moved: $($_.Name)" -ForegroundColor Gray
-        }
-    } elseif (Test-Path $file.src) {
-        Move-Item -Path $file.src -Destination $file.dst -Force
-        Write-Host "  Moved: $($file.src)" -ForegroundColor Gray
+Write-Host "[4/7] Moving deployment files..." -ForegroundColor Yellow
+foreach ($file in $deployFiles) {
+    if (Test-Path $file) {
+        Move-Item $file "docs/deployment/" -Force
+        Write-Host "  OK $file -> docs/deployment/" -ForegroundColor Green
+        $moved++
     }
 }
 
-# Move maintenance docs
-Write-Host "`n[MAINTENANCE]" -ForegroundColor Yellow
-$maintenance = @(
-    @{src="MAINTENANCE_GUIDE.md"; dst="docs/maintenance/"},
-    @{src="DATA_PERSISTENCE_GUIDE.md"; dst="docs/maintenance/"},
-    @{src="QUICK_TEST_GUIDE.md"; dst="docs/maintenance/"}
+# Move troubleshooting/fix files
+$fixFiles = @(
+    "ARABIC_FONT_SETUP.md",
+    "ARABIC_LETTER_JOINING_GUIDE.md",
+    "ARABIC_PDF_COMPLETE_SOLUTION.md",
+    "ARABIC_PDF_QUICK_REFERENCE.md",
+    "ARABIC_PDF_SOLUTION_DIAGRAM.md",
+    "ARABIC_RTL_FIX.md",
+    "ALTERNATIVE_ARABIC_PDF_SOLUTION.md",
+    "CRITICAL_FIX_SUMMARY.md",
+    "CRITICAL_ISSUES_ANALYSIS.md",
+    "DESKTOP_PLATFORM_FIX.md",
+    "FINAL_ARABIC_FIX.md",
+    "FINAL_ARABIC_PDF_SUMMARY.md",
+    "FINAL_FIX_SUMMARY.md",
+    "FINAL_FIXES_COMPLETE.md",
+    "FIXES_APPLIED_NOW.md",
+    "PREDEFINED_ARABIC_SOLUTION.md",
+    "REAL_SOLUTION.md",
+    "RTL_FIX_SUMMARY.md",
+    "SMART_ARABIC_FIX.md",
+    "ULTIMATE_ARABIC_FIX.md",
+    "URGENT_FIX_INSTRUCTIONS.md",
+    "WEB_PLATFORM_FIX.md"
 )
 
-foreach ($file in $maintenance) {
-    if (Test-Path $file.src) {
-        Move-Item -Path $file.src -Destination $file.dst -Force
-        Write-Host "  Moved: $($file.src)" -ForegroundColor Gray
+Write-Host "[5/7] Moving troubleshooting files..." -ForegroundColor Yellow
+foreach ($file in $fixFiles) {
+    if (Test-Path $file) {
+        Move-Item $file "docs/troubleshooting/" -Force
+        Write-Host "  OK $file -> docs/troubleshooting/" -ForegroundColor Green
+        $moved++
     }
 }
 
-# Move troubleshooting docs
-Write-Host "`n[TROUBLESHOOTING]" -ForegroundColor Yellow
-$troubleshooting = @(
-    @{src="FIX_VISUAL_STUDIO.md"; dst="docs/troubleshooting/"},
-    @{src="WINDOWS_FORMAT_EXCEPTION_FIX.md"; dst="docs/troubleshooting/"},
-    @{src="WEB_AUTH_FIX.md"; dst="docs/troubleshooting/"},
-    @{src="LOGIN_FIX_APPLIED.md"; dst="docs/troubleshooting/"},
-    @{src="ARABIC_PDF_*FIX*.md"; dst="docs/troubleshooting/"}
+# Move testing/maintenance files
+$testFiles = @(
+    "CODE_VERIFICATION.md",
+    "COMPREHENSIVE_TEST_PLAN.md",
+    "DATA_VERIFICATION_GUIDE.md",
+    "HOW_TO_TEST_PLATFORMS.md",
+    "PLATFORM_STATUS_VERIFIED.md",
+    "PLATFORM_TEST_RESULTS.md",
+    "QUICK_DATA_VERIFY.md",
+    "TESTING_WORKFLOW.md",
+    "WEB_READY_TO_TEST.md"
 )
 
-foreach ($file in $troubleshooting) {
-    if ($file.src -like "*`**") {
-        Get-ChildItem -Path $file.src -ErrorAction SilentlyContinue | ForEach-Object {
-            Move-Item -Path $_.FullName -Destination $file.dst -Force
-            Write-Host "  Moved: $($_.Name)" -ForegroundColor Gray
-        }
-    } elseif (Test-Path $file.src) {
-        Move-Item -Path $file.src -Destination $file.dst -Force
-        Write-Host "  Moved: $($file.src)" -ForegroundColor Gray
+Write-Host "[6/7] Moving testing/maintenance files..." -ForegroundColor Yellow
+foreach ($file in $testFiles) {
+    if (Test-Path $file) {
+        Move-Item $file "docs/maintenance/" -Force
+        Write-Host "  OK $file -> docs/maintenance/" -ForegroundColor Green
+        $moved++
     }
 }
 
-# Move architecture docs
-Write-Host "`n[ARCHITECTURE]" -ForegroundColor Yellow
-$architecture = @(
-    @{src="PROJECT_ANALYSIS_REPORT.md"; dst="docs/development/architecture/"},
-    @{src="PROJECT_STATUS_COMPLETE.md"; dst="docs/development/architecture/"},
-    @{src="PLATFORM_SUPPORT.md"; dst="docs/development/architecture/"}
+# Archive session/status files (development logs)
+$archiveFiles = @(
+    "00_READ_ME_FIRST.md",
+    "ACTIONS_TAKEN.md",
+    "APP_DISTRIBUTION_AND_MONITORING_GUIDE.md",
+    "COMPLETE_WORK_SUMMARY.md",
+    "CURRENT_STATUS.md",
+    "DELIVERABLES.md",
+    "DELIVERY_COMPLETE.md",
+    "DELIVERY_SUMMARY.md",
+    "DO_THIS_NOW.md",
+    "DOCUMENTATION_INDEX.md",
+    "FILE_INDEX.md",
+    "FINAL_COMPLETE_SUMMARY.md",
+    "FINAL_IMPLEMENTATION_SUMMARY.md",
+    "FINAL_PROJECT_SUMMARY.md",
+    "FINAL_SESSION_SUMMARY.md",
+    "FINAL_STATUS_ALL_PLATFORMS.md",
+    "FINAL_SUMMARY.md",
+    "IMPLEMENTATION_COMPLETE.md",
+    "IMPLEMENTATION_GUIDE.md",
+    "IMPLEMENTATION_SUMMARY.md",
+    "MASTER_INDEX.md",
+    "PROJECT_COMPLETION_REPORT.md",
+    "PROJECT_INDEX.md",
+    "QUICK_DB_START.md",
+    "QUICK_DEMO.md",
+    "QUICK_REFERENCE.md",
+    "QUICK_START.md",
+    "QUICK_STATUS.md",
+    "RESTART_SERVER.md",
+    "SUCCESS_APP_RUNNING.md",
+    "WHAT_WE_BUILT.md",
+    "WHERE_ARE_FEATURES.md"
 )
 
-foreach ($file in $architecture) {
-    if (Test-Path $file.src) {
-        Move-Item -Path $file.src -Destination $file.dst -Force
-        Write-Host "  Moved: $($file.src)" -ForegroundColor Gray
+Write-Host "[7/7] Archiving session files..." -ForegroundColor Yellow
+foreach ($file in $archiveFiles) {
+    if (Test-Path $file) {
+        Move-Item $file "docs/development/archive/" -Force
+        Write-Host "  OK $file -> docs/development/archive/" -ForegroundColor Green
+        $moved++
     }
 }
 
-# Clean up session/status files (move to archive)
-Write-Host "`n[ARCHIVING SESSION FILES]" -ForegroundColor Yellow
-$archive = "docs/development/archive"
-if (-not (Test-Path $archive)) {
-    New-Item -ItemType Directory -Path $archive -Force | Out-Null
-}
-
-$sessionFiles = Get-ChildItem -Path "." -Filter "SESSION_*.md" -ErrorAction SilentlyContinue
-$sessionFiles += Get-ChildItem -Path "." -Filter "START_*.md" -ErrorAction SilentlyContinue
-$sessionFiles += Get-ChildItem -Path "." -Filter "TEST_*.md" -ErrorAction SilentlyContinue
-$sessionFiles += Get-ChildItem -Path "." -Filter "READY_*.md" -ErrorAction SilentlyContinue
-$sessionFiles += Get-ChildItem -Path "." -Filter "ALL_*.md" -ErrorAction SilentlyContinue
-
-foreach ($file in $sessionFiles) {
-    if (Test-Path $file.FullName) {
-        Move-Item -Path $file.FullName -Destination $archive -Force
-        Write-Host "  Archived: $($file.Name)" -ForegroundColor Gray
-    }
-}
-
-Write-Host "`n========================================" -ForegroundColor Green
-Write-Host "Documentation organization complete!" -ForegroundColor Green
-Write-Host "========================================" -ForegroundColor Green
+# Count files kept in root
 Write-Host ""
-Write-Host "Structure:" -ForegroundColor Cyan
-Write-Host "  docs/user-guides/          - User documentation"
-Write-Host "  docs/development/changelog/ - Version history"
-Write-Host "  docs/development/phases/    - Development phases"
-Write-Host "  docs/deployment/            - Build & deployment"
-Write-Host "  docs/maintenance/           - Maintenance guides"
-Write-Host "  docs/troubleshooting/       - Problem solving"
+Write-Host "Checking root files..." -ForegroundColor Yellow
+foreach ($file in $keepInRoot) {
+    if (Test-Path $file) {
+        Write-Host "  Keeping $file in root" -ForegroundColor Cyan
+        $kept++
+    }
+}
+
+Write-Host ""
+Write-Host "================================================" -ForegroundColor Cyan
+Write-Host "  Documentation Organization Complete!" -ForegroundColor Green
+Write-Host "================================================" -ForegroundColor Cyan
+Write-Host ""
+Write-Host "Summary:" -ForegroundColor Yellow
+Write-Host "  Files moved: $moved" -ForegroundColor White
+Write-Host "  Files kept in root: $kept" -ForegroundColor White
+Write-Host ""
+Write-Host "Clean root directory with organized docs structure!" -ForegroundColor Green
 Write-Host ""
